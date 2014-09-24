@@ -2,6 +2,7 @@ package model;
 
 import dao.MemoryRepository;
 import dao.Repository;
+import model.exceptions.EmailExistsException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -60,5 +61,25 @@ public class UserTest extends Assert {
 
         user.setEmail("test@@mail.ru");
         assertFalse(user.validate());
+    }
+
+    /**
+     * Проверка, что email-дублируется
+     */
+    @Test//(expected = EmailExistsException)
+    public void duplicateEmail() throws Exception {
+        Repository<User> repository = new MemoryRepository<User>();
+        User user1 = new User("user1");
+        user1.setEmail("test@mail.ru");
+        repository.insert(user1);
+
+        User user2 = new User("user2");
+        user2.setEmail("test@mail.ru");
+        try {
+            repository.insert(user2);
+            fail("Должно быть исключение, т.к. email уже есть в БД");
+        } catch (EmailExistsException ex) {
+            assertEquals("Пользователь с test@mail.ru уже есть в БД", ex.getMessage());
+        }
     }
 }
