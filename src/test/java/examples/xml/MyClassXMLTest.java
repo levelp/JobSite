@@ -56,20 +56,20 @@ public class MyClassXMLTest extends Assert {
                 new XMLFileRepository("users.xml");
 
         Repository<User> repository = xmlFileRepository;
-        repository.insert(new User("User1"));
-        repository.insert(new User("User2"));
-        repository.insert(new User("User3"));
+        assertEquals(1, repository.insert(new User("User1")));
+        assertEquals(2, repository.insert(new User("User2")));
+        assertEquals(3, repository.insert(new User("User3")));
 
         xmlFileRepository.save();
 
-        XMLFileRepository newXmlFileRepository = new XMLFileRepository("users.xml");
+        XMLFileRepository<User> newXmlFileRepository = new XMLFileRepository<User>("users.xml");
         newXmlFileRepository.load();
 
         Repository<User> rep = newXmlFileRepository;
 
-        assertEquals("User1", rep.get(0).getUsername());
-        assertEquals("User2", rep.get(0).getUsername());
-        assertEquals("User2", rep.get(0).getUsername());
+        assertEquals("User1", rep.get(1).getUsername());
+        assertEquals("User2", rep.get(2).getUsername());
+        assertEquals("User3", rep.get(3).getUsername());
     }
 
 
