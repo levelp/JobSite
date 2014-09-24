@@ -6,13 +6,13 @@ import java.util.LinkedHashMap;
 /**
  * Хранение объектов в памяти
  */
-public class MemoryRepository implements Repository {
+public class MemoryRepository<T extends Entity> implements Repository<T> {
     static int counter = 0;
 
-    HashMap<Integer, Object> table = new LinkedHashMap<Integer, Object>();
+    HashMap<Integer, T> table = new LinkedHashMap<Integer, T>();
 
     @Override
-    public int insert(Entity obj) throws Exception {
+    public int insert(T obj) throws Exception {
         counter++;
 
         // Присваиваем setId
@@ -20,5 +20,10 @@ public class MemoryRepository implements Repository {
 
         table.put(obj.getId(), obj);
         return obj.getId();
+    }
+
+    @Override
+    public T get(int id) {
+        return table.get(id);
     }
 }

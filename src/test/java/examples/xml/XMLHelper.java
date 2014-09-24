@@ -10,7 +10,7 @@ import java.io.FileOutputStream;
 /**
  * Вспомогательный класс, который умеет сохранять и загружать наш объект
  */
-public class MyClassHelper {
+public class XMLHelper {
     /**
      * Запись объекта в XML-файл
      *
@@ -18,7 +18,7 @@ public class MyClassHelper {
      * @param filename XML-файл
      * @throws Exception
      */
-    public static void write(MyClass obj, String filename) throws Exception {
+    public static void write(Object obj, String filename) throws Exception {
         XMLEncoder encoder =
                 new XMLEncoder(
                         new BufferedOutputStream(
@@ -34,11 +34,11 @@ public class MyClassHelper {
      * @return Объект
      * @throws Exception
      */
-    public static MyClass read(String filename) throws Exception {
+    public static Object read(String filename) throws Exception {
         XMLDecoder decoder =
                 new XMLDecoder(new BufferedInputStream(
                         new FileInputStream(filename)));
-        MyClass o = (MyClass) decoder.readObject();
+        Object o = decoder.readObject();
         decoder.close();
         return o;
     }
