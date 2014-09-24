@@ -3,13 +3,12 @@ package examples.stringbuilder;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.awt.Point;
-
 /**
  * "Склеивание" строк при помощи класса StringBuilder.
  * <p/>
- * Для оптимизации работы виртуальной машины, разработчики языка Java приняли решение сделать класс String
- * неизменяемым (immutable). Это в действительности упрощает и ускоряет многие операции со строками.
+ * Для оптимизации работы виртуальной машины, разработчики языка
+ * Java приняли решение сделать класс String неизменяемым (immutable).
+ * Это в действительности упрощает и ускоряет многие операции со строками.
  * <p/>
  * Но, кроме плюсов, это накладывает ещё и определённые ограничения.
  * Операция конкатенации (склейки) строк - медленная.
@@ -58,8 +57,8 @@ public class StringBuilderTest extends Assert {
         assertEquals("boolean: true, double: 1.2", builder.toString());
 
         builder.append("  "); // Отступ
-        java.awt.Point point = new Point(2, 3);
+        Point point = new Point(2, 3);
         builder.append(point);
-        assertEquals("boolean: true, double: 1.2  examples.stringbuilder.Point{x=2.0, y=3.0}", builder.toString());
+        assertEquals("boolean: true, double: 1.2  Point{x=2.0, y=3.0}", builder.toString());
     }
 }

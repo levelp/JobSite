@@ -22,7 +22,7 @@ public class Point {
 
     @Override
     public String toString() {
-        return "examples.stringbuilder.Point{" +
+        return "Point{" +
                 "x=" + x +
                 ", y=" + y +
                 '}';
