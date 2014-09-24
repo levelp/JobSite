@@ -7,8 +7,14 @@ import java.util.LinkedHashMap;
  * Хранение объектов в памяти
  */
 public class MemoryRepository<T extends Entity> implements Repository<T> {
-    static int counter = 0;
+    /**
+     * Счётчик объектов в таблице
+     */
+    int counter = 0;
 
+    /**
+     * Таблица с удобным поиском по id
+     */
     HashMap<Integer, T> table = new LinkedHashMap<Integer, T>();
 
     @Override

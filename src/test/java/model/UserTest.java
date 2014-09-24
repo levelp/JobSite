@@ -36,7 +36,7 @@ public class UserTest extends Assert {
         assertTrue(user.validate());
 
         // 4. Сохранение в постоянное хранилище объектов
-        Repository<User> userTable = new MemoryRepository();
+        Repository<User> userTable = new MemoryRepository<User>();
         int newId = userTable.insert(user);
         assertEquals(1, newId);
     }
