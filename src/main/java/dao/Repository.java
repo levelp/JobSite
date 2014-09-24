@@ -18,8 +18,8 @@ public interface Repository<T extends Entity> {
     /**
      * Получение объекта по идентификатору
      *
-     * @param id идентификатор
-     * @return Объект
+     * @param id идентификатор объекта
+     * @return Объект или null если объекта с таким id нет
      */
     T get(int id);
 }
