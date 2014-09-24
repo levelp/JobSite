@@ -39,4 +39,26 @@ public class UserTest extends Assert {
         int newId = userTable.insert(user);
         assertEquals(1, newId);
     }
+
+    @Test
+    public void validateEmail() {
+        User user = new User();
+        user.setEmail("test@mail.ru");
+        assertTrue(user.validate());
+
+        user.setEmail("test@mail.com.ru");
+        assertTrue(user.validate());
+
+        user.setEmail("test212@mail1.com2.com");
+        assertTrue(user.validate());
+
+        user.setEmail("john.smith@mail.com.com");
+        assertTrue(user.validate());
+
+        user.setEmail("testmail.ru");
+        assertFalse(user.validate());
+
+        user.setEmail("test@@mail.ru");
+        assertFalse(user.validate());
+    }
 }

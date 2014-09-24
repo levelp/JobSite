@@ -2,10 +2,13 @@ package model;
 
 import dao.Entity;
 
+import java.util.regex.Pattern;
+
 /**
  * Пользователь
  */
 public class User implements Entity {
+    public static final Pattern emailPattern = Pattern.compile("(\\w+.)*\\w+@(\\w+.)+\\w+");
     public int id;
 
     private String email;
@@ -14,6 +17,7 @@ public class User implements Entity {
     public User() {
         // TODO: получить новый идентификатор пользователя
         id = 1;
+        username = "Гость";
     }
 
     public User(String username) {
@@ -37,8 +41,15 @@ public class User implements Entity {
     }
 
     public boolean validate() {
-        // TODO: проверять email
-        return true;
+        return validateEmail() && validateUsername();
+    }
+
+    private boolean validateUsername() {
+        return !username.isEmpty();
+    }
+
+    private boolean validateEmail() {
+        return emailPattern.matcher(email).matches();
     }
 
     @Override
