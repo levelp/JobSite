@@ -24,6 +24,10 @@ public class MemoryRepository<T extends Entity> implements Repository<T> {
         // Присваиваем setId
         obj.setId(counter);
 
+        for (Integer id : table.keySet()) {
+            table.get(id).equalityCheck(obj);
+        }
+
         table.put(obj.getId(), obj);
         return obj.getId();
     }

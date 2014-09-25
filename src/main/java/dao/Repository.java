@@ -22,4 +22,5 @@ public interface Repository<T extends Entity> {
      * @return Объект
      */
     T get(int id);
+
 }

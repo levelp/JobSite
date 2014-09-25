@@ -2,7 +2,7 @@ package model;
 
 import dao.MemoryRepository;
 import dao.Repository;
-import model.exceptions.EmailExistsException;
+import model.exceptions.EqualityException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -66,7 +66,7 @@ public class UserTest extends Assert {
     /**
      * Проверка, что email-дублируется
      */
-    @Test//(expected = EmailExistsException)
+    @Test
     public void duplicateEmail() throws Exception {
         Repository<User> repository = new MemoryRepository<User>();
         User user1 = new User("user1");
@@ -78,8 +78,93 @@ public class UserTest extends Assert {
         try {
             repository.insert(user2);
             fail("Должно быть исключение, т.к. email уже есть в БД");
-        } catch (EmailExistsException ex) {
-            assertEquals("Пользователь с test@mail.ru уже есть в БД", ex.getMessage());
+        } catch (EqualityException ex) {
+            assertEquals("Пользователь с test@mail.ru уже есть в БД", ex.getSuppressed()[0].getMessage());
         }
     }
+
+    /**
+     * Проверка, что имя дублируется
+     */
+    @Test
+    public void duplicateName() throws Exception {
+        Repository<User> repository = new MemoryRepository<User>();
+        User user1 = new User("user1");
+        User user2 = new User("user1");
+
+        repository.insert(user1);
+
+        try {
+            repository.insert(user2);
+            fail("Должно быть исключение, т.к. такой имя уже есть в БД");
+        } catch (EqualityException ex) {
+            assertEquals("Пользователь с именеме user1 уже есть в БД", ex.getSuppressed()[0].getMessage());
+        }
+    }
+
+    /**
+     * Проверка что имя не null, не пробел, содержит только буквы, цифры и тире
+     */
+    @Test
+    public void validateName() {
+        User user = new User();
+
+        // обычное имя
+        user.setUsername("Name Name");
+        assertTrue(user.validate());
+        // составные имена
+        user.setUsername("FirstName-SecondName Name");
+        assertTrue(user.validate());
+        user.setUsername("FirstName-SecondName-ThirdName");
+        assertTrue(user.validate());
+        // содержит цифры
+        user.setUsername("1user3");
+        assertTrue(user.validate());
+
+        // имя == null
+        user.setUsername(null);
+        assertFalse(user.validate());
+        // пустое имя
+        user.setUsername("");
+        assertFalse(user.validate());
+        // имя == пробел(ы)
+        user.setUsername(" ");
+        assertFalse(user.validate());
+        user.setUsername("  ");
+        assertFalse(user.validate());
+        user.setUsername("      ");
+        assertFalse(user.validate());
+        // содержит два тире подряд
+        user.setUsername("FirstName--SecondName");
+        assertFalse(user.validate());
+        // содержит прочие символы
+        user.setUsername("!Name@#");
+        assertFalse(user.validate());
+    }
+
+    /**
+     * Сохранение и восстановление нескольких разных пользователей в репозиторий в памяти
+     */
+    @Test
+    public void insertAndGetUsers() throws Exception {
+        Repository<User> users = new MemoryRepository<User>();
+        User user1 = new User("User1");
+        User user2 = new User("User2");
+        User user3 = new User("User3");
+        User user4 = new User("User4");
+
+        assertEquals(1, users.insert(user1));
+        assertEquals(2, users.insert(user2));
+        assertEquals(3, users.insert(user3));
+        assertEquals(4, users.insert(user4));
+
+        assertEquals(user1, users.get(1));
+        assertEquals(user2, users.get(2));
+        assertEquals(user3, users.get(3));
+        assertEquals(user4, users.get(4));
+
+        assertNotEquals(user1, users.get(2));
+    }
+
+
 }

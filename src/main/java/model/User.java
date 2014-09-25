@@ -1,6 +1,9 @@
 package model;
 
 import dao.Entity;
+import model.exceptions.EmailExistsException;
+import model.exceptions.EqualityException;
+import model.exceptions.NameExistsException;
 
 import java.util.regex.Pattern;
 
@@ -45,11 +48,18 @@ public class User implements Entity {
     }
 
     private boolean validateUsername() {
-        return !username.isEmpty();
+
+        if (username == null || username.isEmpty()) {
+            return false;
+        }
+        if (!username.matches("(\\w+-)*(\\w+\\s)*\\w+")) {
+            return false;
+        }
+        return true;
     }
 
     private boolean validateEmail() {
-        return emailPattern.matcher(email).matches();
+        return email == null || emailPattern.matcher(email).matches();
     }
 
     @Override
@@ -60,5 +70,26 @@ public class User implements Entity {
     @Override
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void equalityCheck(Entity e) throws EqualityException {
+        User other = (User) e;
+
+        EqualityException eqEx = new EqualityException();
+        EmailExistsException exEmail;
+        NameExistsException exName;
+
+        if (this.email != null && this.email.equals(other.email)) {
+            exEmail = new EmailExistsException("Пользователь с " + this.email + " уже есть в БД");
+            eqEx.addSuppressed(exEmail);
+        }
+
+        if (this.username.equals(other.username)) {
+            exName = new NameExistsException("Пользователь с именеме " + this.username + " уже есть в БД");
+            eqEx.addSuppressed(exName);
+        }
+
+        if (eqEx.getSuppressed().length != 0) throw eqEx;
+
     }
 }
