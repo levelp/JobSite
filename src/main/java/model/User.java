@@ -9,10 +9,33 @@ import java.util.regex.Pattern;
  */
 public class User implements Entity {
     public static final Pattern emailPattern = Pattern.compile("(\\w+.)*\\w+@(\\w+.)+\\w+");
-    public int id;
 
+    public int id;
     private String email;
     private String username;
+    private Sex sex;
+
+    public User(String username, String email, String password, Sex sex) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.sex = sex;
+    }
+    public User createMale(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.sex = Sex.MAN;
+        return new User(username, email, password, sex);
+    }
+
+    public User createFemale(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.sex = Sex.WOMAN;
+        return new User(username, email, password, sex);
+    }
 
     public void setPassword(String password) {
         this.password = password;
@@ -75,5 +98,9 @@ public class User implements Entity {
 
     public boolean isPasswordCorrect() {
         return !this.getPassword().isEmpty() && this.getPassword().length() > 6;
+    }
+
+    public Sex getSex() {
+        return sex;
     }
 }
