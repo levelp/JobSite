@@ -1,6 +1,8 @@
 package model;
 
 import dao.Entity;
+import model.exceptions.NotCorrectEmailException;
+import model.exceptions.NotCorrectPasswordException;
 
 import java.util.regex.Pattern;
 
@@ -63,7 +65,7 @@ public class User implements Entity {
         this.password = password;
     }
 
-    public boolean validate() {
+    public boolean validate() throws NotCorrectEmailException, NotCorrectPasswordException {
         return ((validateEmail() && validateUsername()) && validatePassword());
     }
 
@@ -75,8 +77,9 @@ public class User implements Entity {
         return emailPattern.matcher(email).matches();
     }
 
-    private boolean validatePassword() {
-        return passwordPattern.matcher(password).matches() && password.length() >= 8;
+    private boolean validatePassword() throws NotCorrectPasswordException {
+        if (passwordPattern.matcher(password).matches() && password.length() >= 8) return true;
+        else throw new NotCorrectPasswordException();
     }
 
     @Override

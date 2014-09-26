@@ -2,7 +2,8 @@ package model;
 
 import dao.MemoryRepository;
 import dao.Repository;
-import model.exceptions.EmailExistsException;
+import model.exceptions.NotCorrectEmailException;
+import model.exceptions.NotCorrectPasswordException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -45,38 +46,51 @@ public class UserTest extends Assert {
 
     @Test
     public void validateEmail() {
-        User user = new User("usertest","password");
+        User user = new User("usertest", "password");
         user.setEmail("test@mail.ru");
-        assertTrue(user.validate());
 
-        user.setEmail("test@mail.com.ru");
-        assertTrue(user.validate());
+        try {
+            assertTrue(user.validate());
 
-        user.setEmail("test212@mail1.com2.com");
-        assertTrue(user.validate());
+            user.setEmail("test@mail.com.ru");
+            assertTrue(user.validate());
 
-        user.setEmail("john.smith@mail.com.com");
-        assertTrue(user.validate());
+            user.setEmail("test212@mail1.com2.com");
+            assertTrue(user.validate());
 
-        user.setEmail("testmail.ru");
-        assertFalse(user.validate());
+            user.setEmail("john.smith@mail.com.com");
+            assertTrue(user.validate());
 
-        user.setEmail("test@@mail.ru");
-        assertFalse(user.validate());
+            user.setEmail("testmail.ru");
+            assertFalse(user.validate());
+
+            user.setEmail("test@@mail.ru");
+            assertFalse(user.validate());
+        } catch (NotCorrectEmailException e) {
+            System.err.println("Email не корректный");
+        } catch (NotCorrectPasswordException e) {
+            System.err.println("Пароль должен содержать не менее 8 символов, буквы латинского алфавита, цифры, знаки дефиса или подчеркивания");
+        }
     }
 
     @Test
     public void validatePassword() {
         User user = new User("test@mail.com", "Username", "");
 
-        user.setPassword("Aa1234567_-");
-        assertTrue(user.validate());
+        try {
+            user.setPassword("Aa1234567_-");
+            assertTrue(user.validate());
 
-        user.setPassword("1Af-_");
-        assertFalse(user.validate());
+            user.setPassword("1Af-_");
+            assertFalse(user.validate());
 
-        user.setPassword("@#$sdfsFDFS3414");
-        assertFalse(user.validate());
+            user.setPassword("@#$sdfsFDFS3414");
+            assertFalse(user.validate());
+        } catch (NotCorrectEmailException e) {
+            System.err.println("Email не корректный");
+        } catch (NotCorrectPasswordException e) {
+            System.err.println("Пароль должен содержать не менее 8 символов, буквы латинского алфавита, цифры, знаки дефиса или подчеркивания");
+        }
     }
 
     /**
@@ -94,7 +108,7 @@ public class UserTest extends Assert {
         try {
             repository.insert(user2);
             fail("Должно быть исключение, т.к. email уже есть в БД");
-        } catch (EmailExistsException ex) {
+        } catch (NotCorrectEmailException ex) {
             assertEquals("Пользователь с test@mail.ru уже есть в БД", ex.getMessage());
         }
     }
