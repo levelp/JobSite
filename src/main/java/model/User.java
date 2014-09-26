@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
  */
 public class User implements Entity {
     public static final Pattern emailPattern = Pattern.compile("(\\w+.)*\\w+@(\\w+.)+\\w+");
+    public static final Pattern passwordPattern = Pattern.compile("[-_A-Za-z0-9]{8,20}");
     public int id;
 
     private String email;
@@ -19,7 +20,7 @@ public class User implements Entity {
         // TODO: получить новый идентификатор пользователя
         id = 1;
         username = "Гость";
-        password = "123";
+        password = "12345678";
     }
 
     public User(String username) {
@@ -30,6 +31,13 @@ public class User implements Entity {
         setUsername(username);
         setPassword(password);
     }
+
+    public User(String email, String username, String password) {
+        setPassword(password);
+        setUsername(username);
+        setEmail(email);
+    }
+
 
     public String getUsername() {
         return username;
@@ -56,7 +64,7 @@ public class User implements Entity {
     }
 
     public boolean validate() {
-        return validateEmail() && validateUsername() && validatePassword();
+        return ((validateEmail() && validateUsername()) && validatePassword());
     }
 
     private boolean validateUsername() {
@@ -68,7 +76,7 @@ public class User implements Entity {
     }
 
     private boolean validatePassword() {
-        return !password.isEmpty();
+        return passwordPattern.matcher(password).matches() && password.length() >= 8;
     }
 
     @Override

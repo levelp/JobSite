@@ -32,7 +32,7 @@ public class UserTest extends Assert {
         // Показываем страницу для заполнения
         user.setEmail("test@mail.ru");
         user.setUsername("testUser");
-        user.setPassword("1234567");
+        user.setPassword("Ud45345435");
 
         // 3. Проверка корректности
         assertTrue(user.validate());
@@ -63,6 +63,14 @@ public class UserTest extends Assert {
 
         user.setEmail("test@@mail.ru");
         assertFalse(user.validate());
+    }
+
+    @Test
+    public void validatePassword() {
+        User user = new User("test@mail.com", "Username", "");
+
+        user.setPassword("Aa1234567_");
+        assertTrue(user.validate());
     }
 
     /**
