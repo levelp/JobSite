@@ -8,5 +8,5 @@ public interface Entity {
 
     void setId(int id);
 
-    void equalityCheck(Entity e) throws Exception;
+    <T extends Entity> void equalityCheck(T obj) throws Exception;
 }
