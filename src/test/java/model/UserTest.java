@@ -31,10 +31,10 @@ public class UserTest extends Assert {
         // 2. Заполнение полей объекта
         // Показываем страницу для заполнения
         user.setEmail("test@mail.ru");
-
+        user.setPassword("111");
         // 3. Проверка корректности
         assertTrue(user.validate());
-
+        assertTrue(user.isPasswordCorrect());
         // 4. Сохранение в постоянное хранилище объектов
         Repository<User> userTable = new MemoryRepository<User>();
         int newId = userTable.insert(user);

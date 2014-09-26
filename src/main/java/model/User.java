@@ -14,6 +14,17 @@ public class User implements Entity {
     private String email;
     private String username;
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    private String password;
+
+
     public User() {
         // TODO: получить новый идентификатор пользователя
         id = 1;
@@ -60,5 +71,9 @@ public class User implements Entity {
     @Override
     public void setId(int id) {
         this.id = id;
+    }
+
+    public boolean isPasswordCorrect() {
+        return !this.getPassword().isEmpty() && this.getPassword().length() > 6;
     }
 }
