@@ -1,7 +1,7 @@
 package model.exceptions;
 
 /**
- * Created by john on 25.09.2014.
+ * Пользователь с идентичными данными уже есть
  */
 public class EqualityException extends Exception {
 }
