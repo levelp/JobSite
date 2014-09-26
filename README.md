@@ -9,3 +9,9 @@ JobSite - сайт поиска работы
 int x = 1;
 System.out.println(x);
 ```
+
+Книга про Git: http://git-scm.com/book/ru
+ 
+1
+2
+3

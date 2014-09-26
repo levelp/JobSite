@@ -9,10 +9,24 @@ import java.util.regex.Pattern;
  */
 public class User implements Entity {
     public static final Pattern emailPattern = Pattern.compile("(\\w+.)*\\w+@(\\w+.)+\\w+");
+    public static final int MIN_PASSWORD_LENGTH = 8;
+    public static final String PASSWORD_REQUIREMENTS =
+            "Пароль должен быть не меньше 8 символов, содержать цифры, заглавные и строчные буквы и не совпадал" +
+                    " с именем пользователя";
+
+    public static final Pattern emailPattern = Pattern.compile("(\\w+.)*\\w+@(\\w+.)+\\w+");
+    public static final String PASSWORD_NOT_CONTAIN_UPPERCASE_AND_DIGITS =
+            "Пароль не содержит заглавных букв и цифр";
     public int id;
 
     private String email;
     private String username;
+
+    // Новый пароль при регистрации (не хранится в БД)
+    private String newPassword;
+
+    // Зашифрованный пароль (как он хранится в БД)
+    private String passwordHash;
 
     public User() {
         // TODO: получить новый идентификатор пользователя
