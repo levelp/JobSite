@@ -13,15 +13,22 @@ public class User implements Entity {
 
     private String email;
     private String username;
+    private String password;
 
     public User() {
         // TODO: получить новый идентификатор пользователя
         id = 1;
         username = "Гость";
+        password = "123";
     }
 
     public User(String username) {
         setUsername(username);
+    }
+
+    public User(String username, String password) {
+        setUsername(username);
+        setPassword(password);
     }
 
     public String getUsername() {
@@ -40,8 +47,16 @@ public class User implements Entity {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public boolean validate() {
-        return validateEmail() && validateUsername();
+        return validateEmail() && validateUsername() && validatePassword();
     }
 
     private boolean validateUsername() {
@@ -50,6 +65,10 @@ public class User implements Entity {
 
     private boolean validateEmail() {
         return emailPattern.matcher(email).matches();
+    }
+
+    private boolean validatePassword() {
+        return !password.isEmpty();
     }
 
     @Override
@@ -61,4 +80,6 @@ public class User implements Entity {
     public void setId(int id) {
         this.id = id;
     }
+
+
 }

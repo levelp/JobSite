@@ -31,6 +31,8 @@ public class UserTest extends Assert {
         // 2. Заполнение полей объекта
         // Показываем страницу для заполнения
         user.setEmail("test@mail.ru");
+        user.setUsername("testUser");
+        user.setPassword("1234567");
 
         // 3. Проверка корректности
         assertTrue(user.validate());
@@ -43,7 +45,7 @@ public class UserTest extends Assert {
 
     @Test
     public void validateEmail() {
-        User user = new User();
+        User user = new User("usertest","password");
         user.setEmail("test@mail.ru");
         assertTrue(user.validate());
 
