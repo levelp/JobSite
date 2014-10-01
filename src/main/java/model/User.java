@@ -27,6 +27,7 @@ public class User implements Entity {
 
     // Зашифрованный пароль (как он хранится в БД)
     private String passwordHash;
+    private String password;
 
     public User(String username, String email, String password, Sex sex) {
         this.username = username;
@@ -34,6 +35,17 @@ public class User implements Entity {
         this.password = password;
         this.sex = sex;
     }
+
+    public User() {
+        // TODO: получить новый идентификатор пользователя
+        id = 1;
+        username = "Гость";
+    }
+
+    public User(String username) {
+        setUsername(username);
+    }
+
     public User createMale(String username, String email, String password) {
         this.username = username;
         this.email = email;
@@ -50,25 +62,12 @@ public class User implements Entity {
         return new User(username, email, password, sex);
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getPassword() {
         return password;
     }
 
-    private String password;
-
-
-    public User() {
-        // TODO: получить новый идентификатор пользователя
-        id = 1;
-        username = "Гость";
-    }
-
-    public User(String username) {
-        setUsername(username);
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getUsername() {
