@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 public class User implements Entity {
     public static final Pattern emailPattern = Pattern.compile("(\\w+.)*\\w+@(\\w+.)+\\w+");
     public static final Pattern passwordPattern = Pattern.compile("[-_A-Za-z0-9]{8,20}");
+    private static final int MIN_PASSWORD_LENGTH = 8;
     public int id;
 
     private String email;
@@ -78,7 +79,7 @@ public class User implements Entity {
     }
 
     private boolean validatePassword() throws NotCorrectPasswordException {
-        if (passwordPattern.matcher(password).matches() && password.length() >= 8) return true;
+        if (passwordPattern.matcher(password).matches() && password.length() >= MIN_PASSWORD_LENGTH) return true;
         else throw new NotCorrectPasswordException();
     }
 
