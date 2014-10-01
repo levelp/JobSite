@@ -11,7 +11,3 @@ System.out.println(x);
 ```
 
 Книга про Git: http://git-scm.com/book/ru
- 
-1
-2
-3

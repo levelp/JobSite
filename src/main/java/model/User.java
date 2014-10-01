@@ -20,12 +20,46 @@ public class User implements Entity {
 
     private String email;
     private String username;
+    private Sex sex;
 
     // Новый пароль при регистрации (не хранится в БД)
     private String newPassword;
 
     // Зашифрованный пароль (как он хранится в БД)
     private String passwordHash;
+
+    public User(String username, String email, String password, Sex sex) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.sex = sex;
+    }
+    public User createMale(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.sex = Sex.MAN;
+        return new User(username, email, password, sex);
+    }
+
+    public User createFemale(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.sex = Sex.WOMAN;
+        return new User(username, email, password, sex);
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    private String password;
+
 
     public User() {
         // TODO: получить новый идентификатор пользователя
@@ -73,6 +107,10 @@ public class User implements Entity {
     @Override
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Sex getSex() {
+        return sex;
     }
 
     public String getNewPassword() {
