@@ -2,6 +2,7 @@ package model;
 
 import dao.Entity;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -13,9 +14,10 @@ public class User implements Entity {
             "Пароль должен быть не меньше 8 символов, содержать цифры, заглавные и строчные буквы и не совпадал" +
                     " с именем пользователя";
 
-    public static final Pattern emailPattern = Pattern.compile("(\\w+.)*\\w+@(\\w+.)+\\w+");
     public static final String PASSWORD_NOT_CONTAIN_UPPERCASE_AND_DIGITS =
             "Пароль не содержит заглавных букв и цифр";
+    public static final Pattern emailPattern = Pattern.compile("(\\w+.)*\\w+@(\\w+.)+\\w+");
+    public List<Resume> resumes;
     public int id;
 
     private String email;
@@ -34,6 +36,7 @@ public class User implements Entity {
         this.email = email;
         this.password = password;
         this.sex = sex;
+        this.resumes = null;
     }
 
     public User() {
