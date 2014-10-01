@@ -2,6 +2,7 @@ package model;
 
 import dao.Entity;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -9,7 +10,7 @@ import java.util.regex.Pattern;
  */
 public class User implements Entity {
     public static final Pattern emailPattern = Pattern.compile("(\\w+.)*\\w+@(\\w+.)+\\w+");
-
+    public List<Resume> resumes;
     public int id;
     private String email;
     private String username;
@@ -20,6 +21,7 @@ public class User implements Entity {
         this.email = email;
         this.password = password;
         this.sex = sex;
+        this.resumes = null;
     }
     public User createMale(String username, String email, String password) {
         this.username = username;
