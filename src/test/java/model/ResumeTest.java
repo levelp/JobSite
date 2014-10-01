@@ -1,9 +1,7 @@
 package model;
 
+import org.junit.Assert;
 import org.junit.Test;
-import sun.jvm.hotspot.utilities.Assert;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * Created by dimashilin on 26.09.14.

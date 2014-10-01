@@ -11,6 +11,7 @@ public class Resume {
     private int salary;
     private String phone;
     private User user;
+
     public Resume(User user, String phone) {
         this.phone = phone;
         this.user = user;

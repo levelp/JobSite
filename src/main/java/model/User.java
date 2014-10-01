@@ -1,6 +1,8 @@
 package model;
 
 import dao.Entity;
+import model.exceptions.NotCorrectEmailException;
+import model.exceptions.NotCorrectPasswordException;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -17,6 +19,12 @@ public class User implements Entity {
     public static final String PASSWORD_NOT_CONTAIN_UPPERCASE_AND_DIGITS =
             "Пароль не содержит заглавных букв и цифр";
     public static final Pattern emailPattern = Pattern.compile("(\\w+.)*\\w+@(\\w+.)+\\w+");
+    public static final Pattern passwordPattern = Pattern.compile("[-_A-Za-z0-9]{8,20}");
+    public static final String PASSWORD_NOT_MATCH_PATTERN =
+            "Пароль должен быть от 8 до 20 символов. Допускаются символы:" +
+                    " латинские буквы в верхнем и нижнем регистрах, цифры, дефис и подчёркивание.";
+    public static final String PASSWORD_TOO_SHORT = "Пароль слишком короткий, должен быть не менее 8 символов";
+
     public List<Resume> resumes;
     public int id;
 
@@ -43,10 +51,23 @@ public class User implements Entity {
         // TODO: получить новый идентификатор пользователя
         id = 1;
         username = "Гость";
+        password = "";
+        newPassword = "";
     }
 
     public User(String username) {
         setUsername(username);
+    }
+
+    public User(String username, String password) {
+        setUsername(username);
+        setPassword(password);
+    }
+
+    public User(String email, String username, String password) {
+        setPassword(password);
+        setUsername(username);
+        setEmail(email);
     }
 
     public User createMale(String username, String email, String password) {
@@ -89,16 +110,24 @@ public class User implements Entity {
         this.email = email;
     }
 
-    public boolean validate() {
-        return validateEmail() && validateUsername();
+    public boolean validate() throws NotCorrectEmailException, NotCorrectPasswordException {
+        return ((validateEmail() && validateUsername()) && validatePassword());
     }
 
     private boolean validateUsername() {
         return !username.isEmpty();
     }
 
-    private boolean validateEmail() {
+    boolean validateEmail() {
         return emailPattern.matcher(email).matches();
+    }
+
+    private boolean validatePassword() throws NotCorrectPasswordException {
+        String error = checkPasswordComplexity();
+        if (error != null)
+            throw new NotCorrectPasswordException(error);
+        if (passwordPattern.matcher(newPassword).matches() && newPassword.length() >= MIN_PASSWORD_LENGTH) return true;
+        else throw new NotCorrectPasswordException(PASSWORD_NOT_MATCH_PATTERN);
     }
 
     @Override
@@ -120,7 +149,6 @@ public class User implements Entity {
     }
 
     public void setNewPassword(String password) {
-
         this.newPassword = password;
     }
 
@@ -131,7 +159,7 @@ public class User implements Entity {
      */
     public String checkPasswordComplexity() {
         if (newPassword.length() < MIN_PASSWORD_LENGTH)
-            return "Пароль слишком короткий, должен быть не менее 8 символов";
+            return PASSWORD_TOO_SHORT;
         int lowerLetter = 0;
         int upperLetter = 0;
         int digits = 0;
