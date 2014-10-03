@@ -27,7 +27,5 @@ public abstract class DBRepository <T extends Entity> implements Repository<T>{
     abstract public int insert(T obj) throws Exception;
 
     @Override
-    public T get(int id) {
-        return null;
-    }
+    abstract public T get(int id) throws Exception;
 }

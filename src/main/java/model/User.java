@@ -144,7 +144,12 @@ public class User implements Entity {
         return sex;
     }
 
+    public void setSex(String sex) {
+        this.sex = sex.equals("MAN") ? Sex.MAN : Sex.WOMAN;
+    }
+
     public String getNewPassword() {
+        newPassword = password;
         return newPassword;
     }
 
@@ -182,5 +187,11 @@ public class User implements Entity {
             return "Пароль состоит только из цифр";
 
         return null;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Id: "+id+"\nUsername: "+username+"\nEmail: "+email+"\nPassword: "+newPassword+"\nSex: "+sex.getName();
     }
 }

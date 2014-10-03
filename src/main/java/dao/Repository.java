@@ -21,5 +21,5 @@ public interface Repository<T extends Entity> {
      * @param id идентификатор объекта
      * @return Объект или null если объекта с таким id нет
      */
-    T get(int id);
+    T get(int id) throws Exception;
 }

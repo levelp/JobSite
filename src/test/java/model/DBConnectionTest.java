@@ -26,6 +26,14 @@ public class DBConnectionTest extends Assert {
     @Test
     public void insertUserTest() throws Exception {
         DBUserRepository dbUserRepository = new DBUserRepository();
-        assertEquals(2, dbUserRepository.insert(new User("TestUser","test1@mail.com","pP1234567",Sex.MAN)));
+        assertEquals(3, dbUserRepository.insert(new User("TestUser","test2@mail.com","pP1234567",Sex.MAN)));
+    }
+
+    @Test
+    public void selectUserTest() throws Exception {
+        DBUserRepository dbUserRepository = new DBUserRepository();
+        User user = dbUserRepository.get(3);
+        assertEquals(3, user.getId());
+        System.out.println(user);
     }
 }
