@@ -4,12 +4,14 @@ import dao.Entity;
 import model.exceptions.NotCorrectEmailException;
 import model.exceptions.NotCorrectPasswordException;
 
+import javax.persistence.Column;
 import java.util.List;
 import java.util.regex.Pattern;
 
 /**
  * Пользователь
  */
+@javax.persistence.Entity
 public class User implements Entity {
     public static final int MIN_PASSWORD_LENGTH = 8;
     public static final String PASSWORD_REQUIREMENTS =
@@ -28,14 +30,19 @@ public class User implements Entity {
     public List<Resume> resumes;
     public int id;
 
+    @Column(name = "EMAIL")
     private String email;
+
+    @Column(name = "USERNAME")
     private String username;
+
+    @Column(name = "SEX")
     private Sex sex;
 
     // Новый пароль при регистрации (не хранится в БД)
     private String newPassword;
 
-    // Зашифрованный пароль (как он хранится в БД)
+    // Хеш пароля (зашифрованный пароль - как он хранится в БД)
     private String passwordHash;
     private String password;
 
@@ -142,6 +149,10 @@ public class User implements Entity {
 
     public Sex getSex() {
         return sex;
+    }
+
+    public void setSex(Sex sex) {
+        this.sex = sex;
     }
 
     public String getNewPassword() {

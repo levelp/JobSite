@@ -13,4 +13,10 @@ public class SexTest extends Assert {
         assertEquals("Мужской", Sex.MAN.getName());
         assertEquals("Женский", Sex.WOMAN.getName());
     }
+
+    @Test
+    public void userSex() {
+        User user = new User();
+        user.setSex(Sex.WOMAN);
+    }
 }

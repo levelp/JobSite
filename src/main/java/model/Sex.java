@@ -1,7 +1,7 @@
 package model;
 
 /**
- * Created by dimashilin on 26.09.14.
+ * Пол пользователя
  */
 public enum Sex {
     MAN("Мужской"),

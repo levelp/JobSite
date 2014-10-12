@@ -1,0 +1,1 @@
+INSERT INTO public."user" (id, name, email, password, sex) VALUES (4, 'Иванов Иван Иванович', '1111', '111', '11');
