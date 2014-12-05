@@ -4,17 +4,28 @@
 
 <hibernate-configuration>
     <session-factory>
+        <!-- dialect: диалект языка -->
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL9Dialect</property>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
 
+        <!-- протокол://сервер:порт/база_данных -->
         <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/jobsite</property>
+        <!-- Имя пользователя для подключения к БД -->
         <property name="hibernate.connection.username">postgres</property>
+        <!-- Пароль пользователя -->
         <property name="hibernate.connection.password">admin</property>
 
         <property name="connection_pool_size">1</property>
 
-        <property name="hbm2ddl.auto">create</property>
+        <!--
+          validate - проверка
+          update - обновление схемы
+          create - пересоздание схемы (с потерей данных)
+          create-drop - удаление схемы по окончании работы с БД
+        -->
+        <property name="hbm2ddl.auto">update</property>
 
+        <!-- Показывать ли все выполняемые SQL-запросы -->
         <property name="show_sql">true</property>
     </session-factory>
 </hibernate-configuration>
