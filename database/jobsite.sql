@@ -32,9 +32,12 @@ VALUES ('Иванов Пётр Иванович', 'mail3@gmail.com', '32', 'MALE
 INSERT INTO "user" (name, email, password, sex)
 VALUES ('Путин Пётр Иванович', 'putin@gmail.com', '32', 'MALE');
 
+
 -- Создаём таблицу resume
 CREATE TABLE resume (
   user_id INT                NOT NULL,
   phone   VARCHAR            NOT NULL,
   text    VARCHAR DEFAULT '' NOT NULL
 );
+
+INSERT INTO resume (user_id, phone, text) VALUES (1, '+79117123122', 'Текст резюме ');

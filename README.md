@@ -19,3 +19,13 @@ System.out.println(x);
 * Устанавливаем и настраиваем БД PostgeSQL
 * Создаём схему и загружаем тестовые данные в БД
 * Запускаем проект
+
+Настройка проекта
+-----------------
+* Сервис: postgresql-x64-9.3
+* Конфигурация: C:\Program Files\PostgreSQL\9.3\data\postgresql.conf
+* PgAdmin III:  логин: postgres, пароль: admin (или тот, который вы задали при установке)
+* Создаю БД jobsite
+* Подключаюсь из Intellij Idea: View -> Tool windows -> Database.
+
+ 

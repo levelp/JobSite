@@ -2329,9 +2329,6 @@
       <column name="phone" sqlType="varchar" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
       <column name="text" sqlType="varchar" precision="2147483647" scale="0" nullable="false" jdbcType="12" def="Jyc="/>
     </table>
-    <table name="rrer" schema="public" catalog="jobsite" type="TABLE">
-      <column name="dzdgd" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
-    </table>
     <table name="user" schema="public" catalog="jobsite" type="TABLE">
       <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgndXNlcl9pZCc6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
       <column name="name" sqlType="varchar" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
