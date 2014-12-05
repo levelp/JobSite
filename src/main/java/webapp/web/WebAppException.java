@@ -3,8 +3,7 @@ package webapp.web;
 import webapp.model.Resume;
 
 /**
- * User: gkislin
- * Date: 18.04.2014
+ * Исключение для пользователей
  */
 public class WebAppException extends RuntimeException {
     private Resume resume = null;
