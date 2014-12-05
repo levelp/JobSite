@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="1.7.0_72" class="java.beans.XMLDecoder">
- <object class="java.util.LinkedHashMap">
-  <void method="put">
+    <object class="java.webapp.util.LinkedHashMap">
+        <void method="put">
    <int>1</int>
-   <object class="model.User">
-    <void property="newPassword">
+            <object class="webapp.model.User">
+            <void property="newPassword">
      <null/>
     </void>
     <void property="password">
@@ -17,9 +17,9 @@
   </void>
   <void method="put">
    <int>2</int>
-   <object class="model.User" id="User0">
-    <void class="model.User" method="getField">
-     <string>id</string>
+      <object class="webapp.model.User" id="User0">
+          <void class="webapp.model.User" method="getField">
+          <string>id</string>
      <void method="set">
       <object idref="User0"/>
       <int>2</int>
@@ -38,9 +38,9 @@
   </void>
   <void method="put">
    <int>3</int>
-   <object class="model.User" id="User1">
-    <void class="model.User" method="getField">
-     <string>id</string>
+      <object class="webapp.model.User" id="User1">
+          <void class="webapp.model.User" method="getField">
+          <string>id</string>
      <void method="set">
       <object idref="User1"/>
       <int>3</int>
