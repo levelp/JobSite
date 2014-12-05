@@ -13,4 +13,4 @@ hs_err_pid*
 
 # Файлы проекта Intellj Idea не нужны в репозитории
 # *.iml
-# .idea
+.idea/workspace.xml
