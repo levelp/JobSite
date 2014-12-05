@@ -23,8 +23,8 @@ INSERT INTO "user" (name, email, password, sex)
 VALUES ('Петров Пётр Петрович', 'petrov@mail.ru', '444', 'MALE');
 INSERT INTO "user" (name, email, password, sex)
 VALUES ('Петров Иван', 'pivan@mail.ru', '11', 'MALE');
-INSERT INTO "user" (name, email, password, sex)
-VALUES ('Иванов Пётр', 'dfd@gmail.com', '32', 'MALE');
+INSERT INTO "user" (email, name, password, sex)
+VALUES ('dfd@gmail.com', 'Иванов Пётр', '32', 'MALE');
 INSERT INTO "user" (name, email, password, sex)
 VALUES ('Чубайс Пётр Иванович', 'mail2@gmail.com', '32', 'MALE');
 INSERT INTO "user" (name, email, password, sex)

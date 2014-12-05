@@ -28,4 +28,26 @@ System.out.println(x);
 * Создаю БД jobsite
 * Подключаюсь из Intellij Idea: View -> Tool windows -> Database.
 
- 
+Пользователь и его резюме
+``` sql 
+SELECT * FROM "user" LEFT JOIN resume ON "user".id = resume.user_id 
+```
+
+``` sql
+SELECT * FROM "user" INNER JOIN resume ON "user".id = resume.user_id 
+SELECT * FROM "user" JOIN resume ON "user".id = resume.user_id 
+```
+
+Все строки
+``` sql 
+SELECT * FROM "user" FULL OUTER JOIN resume ON "user".id = resume.user_id 
+```
+
+``` sql
+SELECT * FROM "user" RIGHT JOIN resume ON "user".id = resume.user_id 
+```
+
+``` sql
+SELECT phone, text, (SELECT name FROM "user" WHERE id = user_id) AS user_name FROM resume
+```
+
