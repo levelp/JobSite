@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="2965628103">
-    <data-source source="LOCAL" name="hibernate.cfg.xml" uuid="2d889e28-820f-44fc-9177-f7cb8b8c7104">
+  <component name="DataSourceManagerImpl" format="xml" hash="1247984081">
+    <data-source source="LOCAL" name="hibernate.cfg.xml" uuid="997b0bd1-50dd-4486-b590-dad880abf109">
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/jobsite</jdbc-url>
@@ -9,7 +9,7 @@
       <user-password>dfcbdfcedfc7dfc3dfc4</user-password>
       <libraries>
         <library>
-          <url>file://C:\Users\gtee\.m2\repository\org\postgresql\postgresql\9.3-1100-jdbc4\postgresql-9.3-1100-jdbc4.jar</url>
+          <url>file://$MAVEN_REPOSITORY$/org/postgresql/postgresql/9.3-1102-jdbc41/postgresql-9.3-1102-jdbc41.jar</url>
         </library>
       </libraries>
     </data-source>
