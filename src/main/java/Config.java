@@ -1,7 +1,5 @@
 package webapp;
 
-import webapp.storage.*;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -16,7 +14,7 @@ public class Config {
     public static final String DIR_STORAGE;
     public static final String DB_URL, DB_USER, DB_PASSWORD;
 
-    static{
+    static {
         String webappRoot = System.getenv("WEBAPP_ROOT");
         if (webappRoot == null) {
             throw new IllegalStateException("Define environment variable WEBAPP_ROOT");
@@ -39,15 +37,4 @@ public class Config {
         }
     }
 
-    public static final IStorage DS_STORAGE = new DataStreamStorage(DIR_STORAGE);
-
-    public static final IStorage SER_STORAGE = new SerializeStorage(DIR_STORAGE);
-
-    public static final IStorage XML_STORAGE = new XmlStorage(DIR_STORAGE);
-
-    public static final IStorage SQL_STORAGE = new SqlStorage();
-
-    public static IStorage getStorage() {
-        return SQL_STORAGE;
-    }
 }

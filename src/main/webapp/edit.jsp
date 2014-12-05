@@ -80,11 +80,12 @@
                         <input type='text' name='<%=type.name()%>' size=80 value='<%=item%>'>
                         <%
                             }
-                           if(type!=SectionType.OBJECTIVE){
+                            if (type != SectionType.OBJECTIVE) {
                         %>
-                            <span class="small"><a href="#" onClick="deleteSection('s_<%=itemNum%>');return false;">Удалить</a></span>
+                        <span class="small"><a href="#"
+                                               onClick="deleteSection('s_<%=itemNum%>');return false;">Удалить</a></span>
                         <%
-                           }
+                            }
                         %>
                     </dd>
                     <br>
@@ -103,7 +104,8 @@
             </dl>
             <dl>
                 <dt>Сайт учереждения:</dt>
-                <dd><input type="text" name='<%=type.name()%>_orgUrl' size=100 value="<%=Util.mask(org.getLink().getUrl())%>">
+                <dd><input type="text" name='<%=type.name()%>_orgUrl' size=100
+                           value="<%=Util.mask(org.getLink().getUrl())%>">
                 </dd>
             </dl>
             <%
@@ -113,20 +115,20 @@
 
             <div id='s_<%=itemNum%>' class="section_item">
                 <dl>
-                <dt>Начальная дата:</dt>
-                <dd>
-                    <select name="<%=pfx%>_startMonth">
-                        <option value=-1 disabled></option>
-                        <%
-                            Date startDate = p.getStartDate();
-                            int startMonth = DateUtil.getMonth(startDate);
-                            for (int j = 0; j < DateUtil.MONTH.length - 1; j++) {
-                                out.println("<option value=" + j + (startMonth == j ? " selected>" : ">") + DateUtil.MONTH[j + 1] + "</option>");
-                            }
-                        %>
-                    </select>
-                    <input type="text" name="<%=pfx%>_startYear" size=10 value="<%=DateUtil.getYear(startDate)%>">
-                </dd>
+                    <dt>Начальная дата:</dt>
+                    <dd>
+                        <select name="<%=pfx%>_startMonth">
+                            <option value=-1 disabled></option>
+                            <%
+                                Date startDate = p.getStartDate();
+                                int startMonth = DateUtil.getMonth(startDate);
+                                for (int j = 0; j < DateUtil.MONTH.length - 1; j++) {
+                                    out.println("<option value=" + j + (startMonth == j ? " selected>" : ">") + DateUtil.MONTH[j + 1] + "</option>");
+                                }
+                            %>
+                        </select>
+                        <input type="text" name="<%=pfx%>_startYear" size=10 value="<%=DateUtil.getYear(startDate)%>">
+                    </dd>
                 </dl>
                 <dl>
                     <dt>Конечная дата:</dt>
@@ -148,10 +150,12 @@
                 </dl>
                 <dl>
                     <dt>Содержание:</dt>
-                    <dd><textarea name="<%=pfx%>_content" rows=5 cols=75><%=Util.mask(p.getContent())%></textarea></dd>
+                    <dd><textarea name="<%=pfx%>_content" rows=5 cols=75><%=Util.mask(p.getContent())%>
+                    </textarea></dd>
                 </dl>
                 <br>
-                <span class="small"><a href="#" onClick="deleteSection('s_<%=itemNum%>');return false;">Удалить</a></span>
+                <span class="small"><a href="#"
+                                       onClick="deleteSection('s_<%=itemNum%>');return false;">Удалить</a></span>
             </div>
             <%
                 }

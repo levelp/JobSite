@@ -1,7 +1,7 @@
-package webapp.util;
+package util;
 
 
-import webapp.WebAppException;
+import web.WebAppException;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -34,7 +34,7 @@ public class JaxbParser {
         }
     }
 
-    public <T> T unmarshall(Reader reader)  {
+    public <T> T unmarshall(Reader reader) {
         try {
             return (T) unmarshaller.unmarshal(reader);
         } catch (JAXBException e) {

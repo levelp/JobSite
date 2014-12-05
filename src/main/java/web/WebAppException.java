@@ -1,6 +1,6 @@
-package webapp;
+package web;
 
-import webapp.model.Resume;
+import model.Resume;
 
 /**
  * User: gkislin

@@ -24,8 +24,10 @@
                         <th>Имя</th>
                         <th>Проживание</th>
                         <th>Email</th>
-                        <th><%=HtmlUtil.EMPTY_TD%></th>
-                        <th><%=HtmlUtil.EMPTY_TD%></th>
+                        <th><%=HtmlUtil.EMPTY_TD%>
+                        </th>
+                        <th><%=HtmlUtil.EMPTY_TD%>
+                        </th>
                     </tr>
                     <% for (Resume r : Config.getStorage().getAllSorted()) { %>
                     <tr>
