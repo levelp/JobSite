@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="1.7.0_72" class="java.beans.XMLDecoder">
- <object class="java.util.ArrayList">
-  <void method="add">
-   <object class="model.User" id="User0">
-    <void class="model.User" method="getField">
-     <string>id</string>
+    <object class="java.webapp.util.ArrayList">
+        <void method="add">
+            <object class="webapp.model.User" id="User0">
+                <void class="webapp.model.User" method="getField">
+                <string>id</string>
      <void method="set">
       <object idref="User0"/>
       <int>0</int>
@@ -22,9 +22,9 @@
    </object>
   </void>
   <void method="add">
-   <object class="model.User" id="User1">
-    <void class="model.User" method="getField">
-     <string>id</string>
+      <object class="webapp.model.User" id="User1">
+          <void class="webapp.model.User" method="getField">
+          <string>id</string>
      <void method="set">
       <object idref="User1"/>
       <int>0</int>
@@ -42,9 +42,9 @@
    </object>
   </void>
   <void method="add">
-   <object class="model.User" id="User2">
-    <void class="model.User" method="getField">
-     <string>id</string>
+      <object class="webapp.model.User" id="User2">
+          <void class="webapp.model.User" method="getField">
+          <string>id</string>
      <void method="set">
       <object idref="User2"/>
       <int>0</int>

@@ -1,10 +1,10 @@
 package examples.xml;
 
-import dao.Repository;
-import dao.XMLFileRepository;
-import model.User;
 import org.junit.Assert;
 import org.junit.Test;
+import webapp.dao.Repository;
+import webapp.dao.XMLFileRepository;
+import webapp.model.User;
 
 import java.io.File;
 import java.util.ArrayList;
