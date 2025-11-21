@@ -117,4 +117,89 @@ public class UserTest extends Assert {
             assertEquals("Пользователь с test@mail.ru уже есть в БД", ex.getMessage());
         }
     }
+
+    @Test
+    public void testCreateFemale() {
+        User user = new User();
+        User female = user.createFemale("testUser", "test@mail.com", "Test123");
+        assertEquals("testUser", female.getUsername());
+        assertEquals("test@mail.com", female.getEmail());
+        assertEquals("Test123", female.getPassword());
+        assertEquals(Sex.WOMAN, female.getSex());
+    }
+
+    @Test
+    public void testConstructorWithUsernameAndPassword() {
+        User user = new User("testUser", "testPassword");
+        assertEquals("testUser", user.getUsername());
+        assertEquals("testPassword", user.getPassword());
+    }
+
+    @Test
+    public void testConstructorWithAllParameters() {
+        User user = new User("testUser", "test@mail.com", "Test123", Sex.MAN);
+        assertEquals("testUser", user.getUsername());
+        assertEquals("test@mail.com", user.getEmail());
+        assertEquals("Test123", user.getPassword());
+        assertEquals(Sex.MAN, user.getSex());
+    }
+
+    @Test
+    public void testCheckPasswordComplexityNoLowerCaseAndDigits() {
+        User user = new User();
+        user.setNewPassword("AAAAAAAA");
+        String error = user.checkPasswordComplexity();
+        assertEquals("Пароль не содержит строчных букв и цифр", error);
+    }
+
+    @Test
+    public void testCheckPasswordComplexityOnlyDigits() {
+        User user = new User();
+        user.setNewPassword("12345678");
+        String error = user.checkPasswordComplexity();
+        assertEquals("Пароль состоит только из цифр", error);
+    }
+
+    @Test
+    public void testCheckPasswordComplexityNoDigits() {
+        User user = new User();
+        user.setNewPassword("AaAaAaAa");
+        String error = user.checkPasswordComplexity();
+        assertEquals("Пароль не содержит цифр", error);
+    }
+
+    @Test
+    public void testCheckPasswordComplexityValid() {
+        User user = new User();
+        user.setNewPassword("Aa123456");
+        String error = user.checkPasswordComplexity();
+        assertNull(error);
+    }
+
+    @Test
+    public void testGetId() {
+        User user = new User();
+        assertEquals(1, user.getId());
+    }
+
+    @Test
+    public void testSetId() {
+        User user = new User();
+        user.setId(100);
+        assertEquals(100, user.getId());
+    }
+
+    @Test
+    public void testGetNewPassword() {
+        User user = new User();
+        user.setNewPassword("TestPassword123");
+        assertEquals("TestPassword123", user.getNewPassword());
+    }
+
+    @Test
+    public void testGetSex() {
+        User user = new User();
+        user.setSex(Sex.MAN);
+        assertEquals(Sex.MAN, user.getSex());
+    }
 }
